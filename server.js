@@ -1,7 +1,9 @@
-const { response } = require("express");
 const express = require("express");
 const path = require("path");
-const db = require("./db/db.json");
+const notes = require("./db/db.json");
+
+//Express setup
+//================================
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -9,9 +11,8 @@ const PORT = process.env.PORT || 3000;
 //===================================
 app.use(express.static(path.join(__dirname, "public")));
 
-//Routes
+//HTML Routes
 //===================================
-//HTML
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -21,10 +22,16 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "notes.html"));
 });
 
-//API
+//API Routes
+//==================================
 
 app.get("/api/notes", (req, res) => {
-  res.json(db);
+  res.json(notes);
+});
+
+app.get("/api/notes/:id", (req, res) => {
+  let choice = req.params.id;
+  res.json(notes.forEach((note) => choice === parseInt(note)));
 });
 
 //Listener
