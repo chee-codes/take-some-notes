@@ -1,6 +1,7 @@
-const { urlencoded } = require("express");
+const { urlencoded, json } = require("express");
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const notes = require("./db/db.json");
 
 //Express setup
@@ -29,6 +30,7 @@ app.get("/notes", (req, res) => {
 //==================================
 
 app.get("/api/notes", (req, res) => {
+  // console.log(notes);
   res.json(notes);
 });
 
@@ -37,16 +39,19 @@ app.get("/api/notes", (req, res) => {
 //   res.json(notes.forEach((note) => choice === parseInt(note)));
 // });
 
-app.post("api/notes/new", (req, res) => {
-  let newNote = req.body;
+app.post("/api/notes", (req, res) => {
+  const newNote = {
+    id: notes.length + 1,
+    title: req.body.title,
+    text: req.body.text,
+  };
 
-  // newNote.routeName = newNote.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newNote);
+  //console.log(newNote);
 
   notes.push(newNote);
+  //console.log(notes);
 
-  res.json(newNote);
+  res.json(notes);
 });
 
 //Listener
