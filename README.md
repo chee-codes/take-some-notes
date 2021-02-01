@@ -22,9 +22,9 @@ This application allows users to take and save notes, and also delete them when 
 
 ## Deployed Link
 
-[Deplyed Link](https://drive.google.com/file/d/11oQaGiiIl86pc63IpOpdMdTJegzi5PIU/view)
+[Deployed Link](https://drive.google.com/file/d/11oQaGiiIl86pc63IpOpdMdTJegzi5PIU/view)
 
-[!App Image]()
+![app image](./note-taker.png)
 
 ## Code Snippet
 
