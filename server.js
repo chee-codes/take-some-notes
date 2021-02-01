@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const notes = require("./db/db.json");
+const { parse } = require("path");
 
 //Express setup
 //================================
@@ -34,13 +35,13 @@ app.get("/api/notes", (req, res) => {
   res.json(notes);
 });
 
-// app.get("/api/notes/:id", (req, res) => {
-//   let choice = req.params.id;
-//   res.json(notes.forEach((note) => choice === parseInt(note)));
-// });
-
 app.post("/api/notes", (req, res) => {
+  // const makeId = notes.forEach((note, i) => {
+  //   note.id + 1;
+  // });
   const newNote = {
+    //Add id using the length of the notes array
+    //and adding 1 so it'll start at 1
     id: notes.length + 1,
     title: req.body.title,
     text: req.body.text,
@@ -49,9 +50,20 @@ app.post("/api/notes", (req, res) => {
   //console.log(newNote);
 
   notes.push(newNote);
-  //console.log(notes);
+  console.log(notes);
 
   res.json(notes);
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+  const toDelete = req.params.id;
+
+  let found = notes.findIndex((note) => note.id === parseInt(toDelete));
+  if (found) {
+    res.json(notes.splice(found, 1));
+  } else {
+    res.json(notes.splice(0, 1));
+  }
 });
 
 //Listener
