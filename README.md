@@ -22,7 +22,7 @@ This application allows users to take and save notes, and also delete them when 
 
 ## Deployed Link
 
-[Deployed Link](https://drive.google.com/file/d/11oQaGiiIl86pc63IpOpdMdTJegzi5PIU/view)
+[Deployed Link](https://still-reaches-23584.herokuapp.com/)
 
 ![app image](./note-taker.png)
 

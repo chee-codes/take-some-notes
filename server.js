@@ -26,9 +26,9 @@ app.use(express.json());
 //! HTML Routes
 //?===================================
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "notes.html"));
@@ -73,6 +73,10 @@ app.delete("/api/notes/:id", (req, res) => {
   } else {
     res.json(notes.splice(0, 1));
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 //? Listener
